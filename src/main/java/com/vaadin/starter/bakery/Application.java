@@ -14,6 +14,9 @@ import com.vaadin.starter.bakery.backend.repositories.UserRepository;
 import com.vaadin.starter.bakery.backend.service.UserService;
 import com.vaadin.starter.bakery.ui.MainView;
 
+
+
+
 /**
  * Spring boot web application initializer.
  */
