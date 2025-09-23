@@ -4,6 +4,10 @@ on:
   pull_request:
     types: [opened, reopened, ready_for_review]
 
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   notify-collaborators:
     runs-on: ubuntu-latest
@@ -13,14 +17,16 @@ jobs:
         with:
           script: |
             // List of GitHub usernames to notify
-            const collaborators = ['LETI-122607']; 
+            const collaborators = ['LETI-122607','LETI-122659','LETI-122632','LETI-122616']; 
+            const prNumber = context.payload.pull_request.number;
+            const prAuthor = context.payload.pull_request.user.login;
 
-            if (collaborators.length > 0) {
-              const mentionString = collaborators.map(u => `@${u}`).join(' ');
-              const prNumber = context.payload.pull_request.number;
-              const message = `Pull request #${prNumber} opened. Notifying: ${mentionString}`;
+            // Exclude the PR author from the notification
+            const collaboratorsToMention = collaborators.filter(u => u !== prAuthor);
 
-              // Leave a comment on the PR tagging collaborators
+            if (collaboratorsToMention.length > 0) {
+              const mentionString = collaboratorsToMention.map(u => `@${u}`).join(' ');
+              const message = `:bell: **Pull request #${prNumber} opened. Notifying:** ${mentionString}`;
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
