@@ -31,6 +31,10 @@ public abstract class AbstractEntity implements Serializable {
 		return Objects.hash(id, version);
 	}
 
+    /**
+    catota
+
+    */
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) {
