@@ -1,0 +1,36 @@
+name: Notify Collaborators on Pull Request
+
+on:
+  pull_request:
+    types: [opened, reopened, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  notify-collaborators:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify collaborators via issue comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // List of GitHub usernames to notify
+            const collaborators = ['LETI-122607','LETI-122659','LETI-122632','LETI-122616']; 
+            const prNumber = context.payload.pull_request.number;
+            const prAuthor = context.payload.pull_request.user.login;
+
+            // Exclude the PR author from the notification
+            const collaboratorsToMention = collaborators.filter(u => u !== prAuthor);
+
+            if (collaboratorsToMention.length > 0) {
+              const mentionString = collaboratorsToMention.map(u => `@${u}`).join(' ');
+              const message = `:bell: **Pull request #${prNumber} opened. Notifying:** ${mentionString}`;
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: message
+              });
+            }
