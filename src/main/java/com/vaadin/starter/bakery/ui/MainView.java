@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
-
+	
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.UI;
@@ -48,6 +48,17 @@ public class MainView extends AppLayout {
 
 	@PostConstruct
 	public void init() {
+
+
+		
+		/** 
+		mano isto e o construtor init e de initiation ok
+		*/
+
+
+
+
+		
 		confirmDialog.setCancelable(true);
 		confirmDialog.setConfirmButtonTheme("raised tertiary error");
 		confirmDialog.setCancelButtonTheme("raised tertiary");
