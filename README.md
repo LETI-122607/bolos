@@ -2,6 +2,13 @@
 
 **This starter is not recommended for new Vaadin Flow applications. Instead, visit [start.vaadin.com](https://start.vaadin.com/) to configure and download a Vaadin project that reflects the current best practices.**
 
+# Authors
+
+- Guilherme Chagas (122659)
+- Tiago Nobre (122632)
+- Rafael Reis (122616)
+- Guilherme Torres (122607)
+
 
 # Running the Project in Development Mode
 
