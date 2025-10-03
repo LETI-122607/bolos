@@ -1,0 +1,10 @@
+No exercício, duas pessoas (ou branches) fizeram alterações no mesmo arquivo (arquivo.txt) ao mesmo tempo.
+Dev1 adicionou: Alteração do dev1
+Dev2 adicionou: Alteração do dev2
+
+Como estas alterações, foram feitas na mesma linha do arquivo o merge das branches, o Git não conseguiu decidir automaticamente qual versão manter.
+Isso gerou um conflito de merging.
+
+Após analisar as alterações,  decidimos manter ambas as linhas para que nenhuma informação fosse perdida.
+Então o arquivo final ficou como está em arquivo.txt
+
